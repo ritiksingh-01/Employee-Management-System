@@ -13,8 +13,8 @@ const Login = () => {
     }
 
     return (
-        <div className='flex h-screen w-screen items-center justify-center bg-gradient-to-br from-emerald-50 to-white'>
-            <div className='flex border border-emerald-600 rounded-xl px-16 py-12 shadow-emerald-100 shadow-2xl bg-white backdrop-blur-sm'>
+        <div className='flex h-screen w-screen items-center justify-center '>
+            <div className='flex border border-emerald-600 rounded-xl px-16 py-12  shadow-2xl bg-transparent backdrop-blur-sm'>
                 <form
                     onSubmit={(e) => {
                         submitHandler(e);
@@ -32,7 +32,7 @@ const Login = () => {
                                 setEmail(e.target.value)
                             }}
                             required
-                            className='text-gray-800 outline-none bg-white border-2 font-medium text-lg border-emerald-600 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 px-4 py-3 w-full rounded-2xl placeholder-gray-500'
+                            className='text-gray-800 outline-none bg-transparent border-2 font-medium text-lg border-emerald-600 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 px-4 py-3 w-full rounded-2xl placeholder-gray-500'
                             type="email"
                             placeholder='Enter your email'
                         />
@@ -47,7 +47,7 @@ const Login = () => {
                                 setPassword(e.target.value)
                             }}
                             required
-                            className='text-gray-800 outline-none bg-white border-2 font-medium text-lg border-emerald-600 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 px-4 py-3 w-full rounded-2xl placeholder-gray-500'
+                            className='text-gray-800 outline-none bg-transparent border-2 font-medium text-lg border-emerald-600 focus:border-emerald-700 focus:ring-2 focus:ring-emerald-200 transition-all duration-200 px-4 py-3 w-full rounded-2xl placeholder-gray-500'
                             type="password"
                             placeholder='Enter your password'
                         />
