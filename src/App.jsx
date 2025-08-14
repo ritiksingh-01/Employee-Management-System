@@ -28,8 +28,12 @@ function App() {
     if(authData && authData.admin.find((e) => e.email == email && e.password == password)){
       setUser('admin')
       localStorage.setItem('loggedInUser' , JSON.stringify({role: 'admin'}))
-    }else if(authData && authData.employees.find((e) => e.email == email && e.password == password)){
-      setUser('employee')
+    }else if(authData){
+      const employee = authData.employees.find((e) => e.email == email && e.password == password);
+      if(employee){
+        setUser('employee')
+        setLoggedInUserData(employee)
+      }
       localStorage.setItem('loggedInUser' , JSON.stringify({role: 'employee'}))
     }
     else{
@@ -43,7 +47,7 @@ function App() {
       !user ? <Login handleLogin={handleLogin} /> : ''
     }
     {
-      user == 'admin' ? <AdminDashboard/> : <EmployeeDashboard/>
+      user == 'admin' ? <AdminDashboard/> : ( user == 'employee' ? <EmployeeDashboard data = {loggedInUserData}/> : null)
     }
     </>
   )
