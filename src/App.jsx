@@ -11,30 +11,28 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [loggedInUserData, setLoggedInUserData] = useState(null)
-  const authData = useContext(AuthContext)
+  const [userData , setUserData] = useContext(AuthContext)
 
-  // useEffect(() => {
+  useEffect (() => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if(loggedInUser){
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role)
+      setLoggedInUserData(userData.data)
+    }
+  },[])
 
-  //   if(authData){
-  //     const loggedInUser = localStorage.getItem('loggedInUser')
-  //     if(loggedInUser){
-  //       setUser(loggedInUser.role)
-  //     }
-  //   }
-  // }, [authData]);
-
-  console.log(authData);
   const handleLogin = (email , password) => {
-    if(authData && authData.admin.find((e) => e.email == email && e.password == password)){
+    if(email == 'admin@company.com' && password == 123){
       setUser('admin')
-      localStorage.setItem('loggedInUser' , JSON.stringify({role: 'admin'}))
-    }else if(authData){
-      const employee = authData.employees.find((e) => e.email == email && e.password == password);
+      localStorage.setItem('loggedInUser' , JSON.stringify({role: 'admin' , data : admin}))
+    }else if(userData){
+      const employee = userData.find((e) => e.email == email && e.password == password);
       if(employee){
         setUser('employee')
         setLoggedInUserData(employee)
       }
-      localStorage.setItem('loggedInUser' , JSON.stringify({role: 'employee'}))
+      localStorage.setItem('loggedInUser' , JSON.stringify({role: 'employee', data : employee}))
     }
     else{
       alert("Invalid credentials")
@@ -47,7 +45,7 @@ function App() {
       !user ? <Login handleLogin={handleLogin} /> : ''
     }
     {
-      user == 'admin' ? <AdminDashboard/> : ( user == 'employee' ? <EmployeeDashboard data = {loggedInUserData}/> : null)
+      user == 'admin' ? <AdminDashboard changeUser={setUser} /> : ( user == 'employee' ? <EmployeeDashboard changeUser={setUser} data = {loggedInUserData}/> : null)
     }
     </>
   )
