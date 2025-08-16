@@ -8,23 +8,37 @@ const FailedTask = ({ data, employeeId, onTaskDelete }) => {
   };
 
   return (
-    <div className="flex-shrink-0 h-full w-[300px] bg-orange-400 rounded-xl p-5">
-      <div className="flex items-center justify-between">
-        <h3 className="px-3 py-1 text-sm rounded bg-red-600">{data.category}</h3>
-        <h4 className="text-sm">{data.date}</h4>
+    <div className="flex-shrink-0 h-full w-[320px] rounded-2xl p-6 border border-gray-200 bg-white shadow-lg">
+      <div className="flex items-center justify-between mb-4">
+        <span className="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 shadow-lg">
+          {data.category}
+        </span>
+        <div className='flex items-center space-x-2 text-gray-500'>
+          <span className='text-sm font-medium'>{data.date}</span>
+        </div>
       </div>
-      <h2 className="mt-3 text-2xl font-semibold">{data.title}</h2>
-      <p className="text-sm mt-2">
-        {data.description}
-      </p>
-      <div className="mt-6">
-        <button 
-          onClick={handleDeleteTask}
-          className="w-full bg-red-500 hover:bg-red-600 active:bg-red-700 py-1 px-2 text-sm rounded cursor-pointer font-semibold transition-all duration-200 text-white"
-        >
-          Delete Task
-        </button>
+      
+      <div className='mb-6'>
+        <h2 className="text-xl font-bold text-gray-800 mb-3">
+          {data.title}
+        </h2>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {data.description}
+        </p>
       </div>
+
+      <div className='flex items-center justify-between mb-4'>
+        <div className='flex items-center space-x-2'>
+          <span className='text-xs font-semibold text-red-600 uppercase tracking-wide'>Failed</span>
+        </div>
+      </div>
+
+      <button 
+        onClick={handleDeleteTask}
+        className="w-full bg-red-500 hover:bg-red-600 text-white py-3 px-4 rounded-xl font-semibold shadow-lg"
+      >
+        Remove Task
+      </button>
     </div>
   );
 };
