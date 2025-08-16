@@ -1,6 +1,12 @@
 import React from "react";
 
-const CompleteTask = ({data}) => {
+const CompleteTask = ({ data, employeeId, onTaskDelete }) => {
+  const handleDeleteTask = () => {
+    if (onTaskDelete && window.confirm('Are you sure you want to delete this completed task?')) {
+      onTaskDelete(data);
+    }
+  };
+
   return (
     <div className="flex-shrink-0 h-full w-[300px] bg-orange-400 rounded-xl p-5">
       <div className="flex items-center justify-between">
@@ -10,10 +16,13 @@ const CompleteTask = ({data}) => {
         <h4 className="text-sm">{data.date}</h4>
       </div>
       <h2 className="mt-3 text-2xl font-semibold">{data.title}</h2>
-      <p className="text-sm mt-2 ">{data.description}</p>
+      <p className="text-sm mt-2">{data.description}</p>
       <div className="mt-6">
-        <button className="w-full bg-green-500 py-1 px-2 text-sm rounded cursor-pointer font-semibold">
-          Completed
+        <button 
+          onClick={handleDeleteTask}
+          className="w-full bg-red-500 hover:bg-red-600 active:bg-red-700 py-1 px-2 text-sm rounded cursor-pointer font-semibold transition-all duration-200 text-white"
+        >
+          Delete Task
         </button>
       </div>
     </div>
